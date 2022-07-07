@@ -26,7 +26,7 @@ namespace Contoso.Payment.UnitTests._3.ExampleWithDI
                     It.Is<string>(e => e == orderCode),
                     It.Is<int>(e => e == customerId),
                     It.Is<float>(e => e == (amount * tax) + amount)))
-                .Returns(new API.Models.Entities.Payment() { Id = id, Amount = amount, CustomerId = customerId, OrderCode = orderCode });
+                .ReturnsAsync(new API.Models.Entities.Payment() { Id = id, Amount = amount, CustomerId = customerId, OrderCode = orderCode });
             var processor = new PaymentProcessor(repositoryMock.Object);
             // ---------------------------------
 

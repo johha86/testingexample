@@ -4,8 +4,8 @@ namespace Contoso.Payment.API.Logic
 {
     public interface IPaymentProcessor
     {
-        PaymentResponse CreateNewPayment(PaymentRequest request);
+        Task<PaymentResponse> CreateNewPayment(PaymentRequest request);
 
-        PaymentResponse GetPayment(int id);
+        Task<PaymentResponse> GetPayment(int id);
     }
 }

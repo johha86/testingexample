@@ -21,13 +21,13 @@ namespace Contoso.Payment.API.Controllers
         {
             try
             {
-                var result = _processor.GetPayment(id);
+                var result = await _processor.GetPayment(id);
 
-                return await Task.FromResult(Ok(result));
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return await Task.FromResult(Problem(ex.Message));
+                return Problem(ex.Message);
             }
         }
 
@@ -36,13 +36,13 @@ namespace Contoso.Payment.API.Controllers
         {
             try
             {
-                var result = _processor.CreateNewPayment(request);
+                var result = await _processor.CreateNewPayment(request);
 
-                return await Task.FromResult(Ok(result));
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return await Task.FromResult(Problem(ex.Message));
+                return Problem(ex.Message);
             }
 
             
