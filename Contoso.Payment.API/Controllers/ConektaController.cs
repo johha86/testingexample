@@ -17,19 +17,35 @@ namespace Contoso.Payment.API.Controllers
         }
         [HttpGet()]
         [Route("{id:int}")]
-        public async Task<PaymentResponse> GetResponse(int id)
+        public async Task<IActionResult> GetResponse(int id)
         {
-           var result = _processor.GetPayment(id);
+            try
+            {
+                var result = _processor.GetPayment(id);
 
-            return await Task.FromResult(result);
+                return await Task.FromResult(Ok(result));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(Problem(ex.Message));
+            }
         }
 
         [HttpPost("payment")]
-        public async Task<PaymentResponse> ProcessPayment([FromBody] PaymentRequest request)
+        public async Task<IActionResult> ProcessPayment([FromBody] PaymentRequest request)
         {
-            var result = _processor.CreateNewPayment(request);
+            try
+            {
+                var result = _processor.CreateNewPayment(request);
 
-            return await Task.FromResult(result);
+                return await Task.FromResult(Ok(result));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(Problem(ex.Message));
+            }
+
+            
         }
     }
 }

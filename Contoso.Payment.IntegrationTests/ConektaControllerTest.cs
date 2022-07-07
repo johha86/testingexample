@@ -19,6 +19,26 @@ namespace Contoso.Payment.IntegrationTests
         }
 
         [Fact]
+        public async Task Should_Create_A_New_Payment()
+        {
+            //  Arrange
+            var client = _factory.CreateClient();
+            var request = new PaymentRequest("asd-45fg", 2, 40.0f);
+            var json = JsonConvert.SerializeObject(request);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            //  Act
+            var response = await client.PostAsync("/api/conekta/payment", data);
+
+            //  Assert
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+            var payment = JsonConvert.DeserializeObject<PaymentResponse>(content);
+            Assert.Equal("asd-45fg", payment.OrderCode);
+        }
+
+        [Fact]
         public async Task Should_Return_An_Existing_Payment()
         {
             //  Arrange
@@ -40,23 +60,19 @@ namespace Contoso.Payment.IntegrationTests
         }
 
         [Fact]
-        public async Task Should_Create_A_New_Payment()
+        public async Task Should_Fail_Creating_Payment()
         {
             //  Arrange
             var client = _factory.CreateClient();
-            var request = new PaymentRequest("asd-45fg",2, 40.0f);
+            var request = new PaymentRequest("", 2, 40.0f);
             var json = JsonConvert.SerializeObject(request);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             //  Act
-            var response = await client.PostAsync("/api/conekta/payment",data);
+            var response = await client.PostAsync("/api/conekta/payment", data);
 
             //  Assert
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
-            var payment = JsonConvert.DeserializeObject<PaymentResponse>(content);
-            Assert.Equal("asd-45fg", payment.OrderCode);
+            Assert.Equal(System.Net.HttpStatusCode.InternalServerError, response.StatusCode);
         }
     }
 }
