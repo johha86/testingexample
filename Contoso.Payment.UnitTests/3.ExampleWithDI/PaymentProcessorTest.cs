@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Moq;
+﻿using Contoso.Payment.API.DataAccess;
 using Contoso.Payment.API.Logic;
-using Contoso.Payment.API.DataAccess;
 using Contoso.Payment.API.Models.DTOs;
+using Moq;
+using Xunit;
 
 namespace Contoso.Payment.UnitTests._3.ExampleWithDI
 {
@@ -34,6 +29,7 @@ namespace Contoso.Payment.UnitTests._3.ExampleWithDI
                 .Returns(new API.Models.Entities.Payment() { Id = id, Amount = amount, CustomerId = customerId, OrderCode = orderCode });
             var processor = new PaymentProcessor(repositoryMock.Object);
             // ---------------------------------
+
             var request = new PaymentRequest(orderCode, customerId, amount);
 
             //  Act

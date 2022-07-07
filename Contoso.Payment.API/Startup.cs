@@ -1,4 +1,7 @@
-﻿namespace Contoso.Payment.API
+﻿using Contoso.Payment.API.DataAccess;
+using Contoso.Payment.API.Logic;
+
+namespace Contoso.Payment.API
 {
     public class Startup
     {
@@ -14,6 +17,10 @@
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            //  Setup DI
+            services.AddSingleton(typeof(IPaymentProcessor), typeof(PaymentProcessor));
+            services.AddSingleton(typeof(IPaymentRepository), typeof(PaymentRepository));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

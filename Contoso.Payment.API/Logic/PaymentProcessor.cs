@@ -28,12 +28,14 @@ namespace Contoso.Payment.API.Logic
             var finalAmount = _costCalculator.CalculatePayment(request.Amount, Region.SouthAmerica);
             var payment = _repository.Create(request.OrderCode, request.CustomerId, finalAmount);
 
-            return new PaymentResponse(payment.Id);
+            return new PaymentResponse(payment.Id, payment.OrderCode);
         }
 
         public PaymentResponse GetPayment(int id)
         {
-            throw new NotImplementedException();
+            var payment = _repository.Get(id);
+
+            return new PaymentResponse(payment.Id, payment.OrderCode);
         }
     }
 }

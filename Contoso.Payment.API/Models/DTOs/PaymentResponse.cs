@@ -1,4 +1,4 @@
 ﻿namespace Contoso.Payment.API.Models.DTOs
 {
-    public record PaymentResponse(int Id);
+    public record PaymentResponse(int Id,string OrderCode);
 }

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Payment.API", "Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Payment.UnitTests", "Contoso.Payment.UnitTests\Contoso.Payment.UnitTests.csproj", "{B05853A9-AD1A-452B-9B13-5521311C6667}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Payment.IntegrationTests", "Contoso.Payment.IntegrationTests\Contoso.Payment.IntegrationTests.csproj", "{C723AD01-4914-44C6-A76E-31E6A7273976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B05853A9-AD1A-452B-9B13-5521311C6667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B05853A9-AD1A-452B-9B13-5521311C6667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B05853A9-AD1A-452B-9B13-5521311C6667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C723AD01-4914-44C6-A76E-31E6A7273976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C723AD01-4914-44C6-A76E-31E6A7273976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C723AD01-4914-44C6-A76E-31E6A7273976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C723AD01-4914-44C6-A76E-31E6A7273976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
